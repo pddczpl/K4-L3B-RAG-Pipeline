@@ -28,13 +28,18 @@
 ## Kiểm thử và kết quả
 
 - Test hoặc query tôi đã dùng:
-- Kết quả trước/sau nếu có:
-- Lỗi đã phát hiện và cách xử lý:
+  - `pytest tests/test_contracts.py -q -k "chunk_documents_preserves_identity_and_metadata or semantic_search_uses_shared_embedding_and_contract or lexical_search_returns_bm25_contract"`
+  - `test_chunk_documents_preserves_identity_and_metadata`: kiểm tra chunk có ID duy nhất, giữ metadata và có `chunk_index` hợp lệ.
+  - `test_semantic_search_uses_shared_embedding_and_contract`: kiểm tra semantic search sử dụng embedding chung, truy vấn collection và trả kết quả `dense` đúng contract.
+  - `test_lexical_search_returns_bm25_contract`: kiểm tra BM25 trả kết quả đúng contract và xếp kết quả có liên quan lên trước.
+- Kết quả trước/sau nếu có: Kết quả chạy test: `3 passed, 12 deselected in 8.40s`.
+- Lỗi đã phát hiện và cách xử lý: Không phát hiện lỗi trong ba test liên quan đến Task 4, 5 và 6. Các test dùng mock cho collection/embedding hoặc corpus kiểm thử nên không yêu cầu gọi API bên ngoài.
 
 ## Điều còn hạn chế
 
-- Một hạn chế cụ thể của phần tôi làm: Chưa có kết quả chạy test hoặc evaluation được ghi nhận trong báo cáo này; việc đo chất lượng retrieval trên bộ golden queries vẫn cần được bổ sung.
-- Nếu có thêm thời gian, thay đổi đầu tiên tôi sẽ thực hiện:
+- Một hạn chế cụ thể của phần tôi làm: Các test trên chủ yếu kiểm tra contract và logic module. Chưa có kết quả kiểm thử tích hợp với toàn bộ dữ liệu thật trong `data/standardized/`, model embedding thật và ChromaDB persistent trong cùng một pipeline.
+- Chưa có số liệu evaluation trên golden queries để đo riêng chất lượng semantic search, BM25 hoặc so sánh dense-only với lexical search/hybrid retrieval.
+- Nếu có thêm thời gian, thay đổi đầu tiên tôi sẽ thực hiện: Bổ sung test tích hợp với corpus thật, đo thời gian indexing/search và tạo tập query có đáp án chuẩn để đánh giá recall/precision của hai phương thức retrieval.
 
 ## Xác nhận đóng góp
 
