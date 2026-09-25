@@ -37,9 +37,10 @@
 
 ## Điều còn hạn chế
 
-- Một hạn chế cụ thể của phần tôi làm: Các test trên chủ yếu kiểm tra contract và logic module. Chưa có kết quả kiểm thử tích hợp với toàn bộ dữ liệu thật trong `data/standardized/`, model embedding thật và ChromaDB persistent trong cùng một pipeline.
-- Chưa có số liệu evaluation trên golden queries để đo riêng chất lượng semantic search, BM25 hoặc so sánh dense-only với lexical search/hybrid retrieval.
-- Nếu có thêm thời gian, thay đổi đầu tiên tôi sẽ thực hiện: Bổ sung test tích hợp với corpus thật, đo thời gian indexing/search và tạo tập query có đáp án chuẩn để đánh giá recall/precision của hai phương thức retrieval.
+- Hạn chế 1 - Task 4: Cấu hình chunk size 500 và overlap 50 đã chạy được trên corpus hiện tại, nhưng kết quả đánh giá mới cho thấy một số câu hỏi về số liệu hoặc mốc thời gian vẫn bị phân mảnh giữa các chunk kế tiếp. Vì vậy cần thử nghiệm thêm các cấu hình lớn hơn như chunk size 700 và overlap 100 để cải thiện Context Precision và Faithfulness.
+- Hạn chế 2 - Task 5: Dense semantic search dùng BAAI/bge-m3 và ChromaDB hoạt động đúng contract, nhưng khi chạy đánh giá A/B trên 17 golden Q&A thì cấu hình dense-only chỉ đạt average 0.8064, thấp hơn hybrid + RRF là 0.8892. Điểm yếu chính là dense search có thể bỏ sót keyword chính xác, năm, mã hoặc mốc lịch sử; Context Recall của dense-only thấp hơn hybrid 0.1177.
+- Hạn chế 3 - Task 6: Lexical search hiện vẫn token hóa đơn giản bằng `lower().split()` và trong file `src/task6_lexical_search.py` đang dùng `BM25Okapi`, nên còn nhạy với dấu câu, biến thể tiếng Việt và trường hợp IDF bị bão hòa trên corpus/chunk ngắn. Kết quả đánh giá nhóm cho thấy hướng tốt hơn là dùng BM25L để hỗ trợ các truy vấn từ khóa ngắn, năm học và tên riêng ổn định hơn.
+- Nếu có thêm thời gian, thay đổi đầu tiên tôi sẽ thực hiện: Tinh chỉnh tham số chunking của Task 4, calibrate lại dense score của Task 5 trên bộ query in-domain/out-of-domain, và nâng Task 6 từ BM25Okapi/tokenization đơn giản sang BM25L kèm tiền xử lý token tiếng Việt tốt hơn.
 
 ## Xác nhận đóng góp
 
