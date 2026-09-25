@@ -1,0 +1,87 @@
+[
+  {
+    "question": "Hệ thống giáo dục Việt Nam được quản lý bởi cơ quan nào?",
+    "expected_answer": "Hệ thống giáo dục Việt Nam được quản lý bởi Bộ Giáo dục và Đào tạo Việt Nam.",
+    "expected_context": "quản lý giáo dục trực thuộc Bộ Giáo dục và Đào tạo Việt Nam"
+  },
+  {
+    "question": "Từ năm nào Việt Nam chuyển từ hệ 10 năm sang hệ 12 năm giáo dục phổ thông?",
+    "expected_answer": "Việt Nam chuyển từ hệ 10 năm sang hệ 12 năm từ năm 1981, khi thống nhất hệ thống giáo dục giữa miền Bắc (10 năm) và miền Nam (12 năm).",
+    "expected_context": "Miền Bắc tiếp tục hệ 10 năm và miền Nam giữ hệ 12 năm từ năm 1976 đến năm 1981"
+  },
+  {
+    "question": "Nhà nước có thu học phí ở bậc giáo dục nào không theo Hiến pháp?",
+    "expected_answer": "Theo Hiến pháp, ở bậc giáo dục tiểu học là bắt buộc và Nhà nước không thu học phí.",
+    "expected_context": "bắt buộc, Nhà nước không thu học phí; từng bước phổ cập giáo dục trung học"
+  },
+  {
+    "question": "Điểm chuẩn tuyển sinh đại học được sử dụng như thế nào?",
+    "expected_answer": "Các thí sinh nếu đạt từ điểm chuẩn của trường trở lên được mời làm các thủ tục nhập học. Để đảm bảo công bằng, có ưu tiên bằng cách cộng vào tổng điểm thi một số điểm ưu tiên.",
+    "expected_context": "Các thí sinh nếu đạt từ điểm chuẩn của trường đi ra trở lên được mời làm các thủ tục nhập học"
+  },
+  {
+    "question": "Từ năm 2002, kỳ thi tuyển sinh đại học có thay đổi gì?",
+    "expected_answer": "Từ năm 2002, Bộ Giáo dục và Đào tạo tổ chức một kì thi duy nhất, sau đó kết quả được áp dụng sang các trường.",
+    "expected_context": "Từ năm 2002 trở đi, Bộ Giáo dục và Đào tạo tổ chức một kì thi duy nhất"
+  },
+  {
+    "question": "Từ năm 2015, phương thức tuyển sinh đại học thay đổi như thế nào?",
+    "expected_answer": "Từ năm 2015, kỳ thi tốt nghiệp trung học phổ thông được sử dụng để xét tuyển đại học, hoặc xét tuyển theo kết quả những kì thi tuyển sinh mới tự tổ chức như Đánh giá năng lực.",
+    "expected_context": "Từ năm 2015, cùng với kỳ thi tốt nghiệp trung học phổ thông, sử dụng kết quả thi tốt nghiệp để xét tuyển đại học"
+  },
+  {
+    "question": "Giáo dục đại học tại Việt Nam đã áp dụng những học chế nào qua các thời kỳ?",
+    "expected_answer": "Giáo dục đại học Việt Nam đã trải qua 3 giai đoạn: áp dụng học chế niên chế (1975-1987), sau đó chuyển sang kết hợp và áp dụng học chế tín chỉ từ năm 1993 đến nay.",
+    "expected_context": "Áp dụng học chế niên chế (1975-1987), Áp dụng học chế tín chỉ (1993-nay)"
+  },
+  {
+    "question": "Kiểm định chất lượng giáo dục đại học tại Việt Nam được áp dụng theo mô hình nào?",
+    "expected_answer": "Kiểm định chất lượng giáo dục đại học được áp dụng theo cách làm xuất phát từ nền giáo dục đại học Hoa Kỳ, trở thành phương thức quản lý chất lượng được áp dụng rộng rãi trên thế giới.",
+    "expected_context": "áp dụng kiểm định chất lượng, một cách làm xuất phát từ nền giáo dục đại học Hoa Kỳ"
+  },
+  {
+    "question": "Nhà nước phân bổ chỉ tiêu tuyển sinh đại học dựa trên căn cứ gì?",
+    "expected_answer": "Hàng năm nhà nước phân bổ chỉ tiêu tuyển sinh cho các cơ sở giáo dục đại học, căn cứ vào tính toán nhu cầu của các cơ quan và các địa phương.",
+    "expected_context": "nhà nước phân bổ chỉ tiêu tuyển sinh cho các cơ sở giáo dục đại học, căn cứ vào tính toán nhu cầu của các cơ quan"
+  },
+  {
+    "question": "Luật Giáo dục Đại học được Quốc hội thông qua quy định những gì?",
+    "expected_answer": "Luật Giáo dục Đại học đưa ra quy định về tổ chức, nhiệm vụ, quyền hạn của cơ sở giáo dục đại học, hoạt động đào tạo, hoạt động khoa học và công nghệ.",
+    "expected_context": "Quốc hội lần đầu tiên thông qua Luật Giáo dục Đại học, đưa ra quy định về tổ chức, nhiệm vụ, quyền hạn"
+  },
+  {
+    "question": "Sự khác biệt giữa trường đại học công lập và tư thục tại Việt Nam là gì?",
+    "expected_answer": "Các cơ sở giáo dục đại học công lập do nhà nước quản lý và tài trợ ngân sách. Các trường đại học tư thục hoạt động theo cơ chế tự chủ tài chính. Trong lịch sử, các trường tư thục từng hoạt động ở miền Nam dưới chính thể trước đó.",
+    "expected_context": "các cơ sở giáo dục đại học công lập, đại học tư thục"
+  },
+  {
+    "question": "Tình trạng thất nghiệp của cử nhân, thạc sĩ tại Việt Nam như thế nào?",
+    "expected_answer": "Số lượng cử nhân, thạc sĩ thất nghiệp gia tăng, chỉ riêng từ quý II cho tới hết quý IV năm 2015 đã tăng lên 26.000 người.",
+    "expected_context": "số lượng cử nhân, thạc sĩ thất nghiệp gia tăng, chỉ riêng từ quý II cho tới hết quý IV năm 2015 đã tăng lên 26.000 người"
+  },
+  {
+    "question": "Kỳ thi tuyển sinh đại học tại Việt Nam có những khối thi nào?",
+    "expected_answer": "Kỳ thi tuyển sinh đại học tại Việt Nam được tổ chức theo các khối thi và môn thi khác nhau, thí sinh đăng ký theo khối phù hợp với ngành học.",
+    "expected_context": "Các khối thi và môn thi"
+  },
+  {
+    "question": "Điểm sàn trong tuyển sinh đại học là gì?",
+    "expected_answer": "Điểm sàn là mức điểm tối thiểu mà thí sinh cần đạt được để đủ điều kiện xét tuyển vào các trường đại học và cao đẳng.",
+    "expected_context": "Điểm sàn"
+  },
+  {
+    "question": "Bộ Giáo dục và Đào tạo Việt Nam có nhiệm vụ và quyền hạn gì?",
+    "expected_answer": "Bộ Giáo dục và Đào tạo có nhiệm vụ, quyền hạn về phương thức hoạt động, tiêu chuẩn, số lượng và cơ cấu thành viên, quản lý giáo dục ở tất cả các cấp từ mầm non đến đại học và sau đại học.",
+    "expected_context": "nhiệm vụ, quyền hạn, phương thức hoạt động, tiêu chuẩn, số lượng và cơ cấu thành viên"
+  },
+  {
+    "question": "Quy chế tuyển sinh đại học do cơ quan nào ban hành?",
+    "expected_answer": "Quy chế tuyển sinh đại học do Bộ Giáo dục và Đào tạo ban hành, quy định về đào tạo và quy chế tuyển sinh cho từng cơ sở giáo dục đại học.",
+    "expected_context": "đào tạo và quy chế tuyển sinh cho từng Học viện, đồng thời báo cáo với Chính phủ"
+  },
+  {
+    "question": "Cách tính ưu tiên trong tuyển sinh đại học tại Việt Nam như thế nào?",
+    "expected_answer": "Để đảm bảo công bằng, có ưu tiên bằng cách cộng vào tổng điểm thi một số điểm ưu tiên cho các đối tượng chính sách.",
+    "expected_context": "đảm bảo công bằng, có ưu tiên bằng cách cộng vào tổng điểm thi một số điểm ưu tiên"
+  }
+]
