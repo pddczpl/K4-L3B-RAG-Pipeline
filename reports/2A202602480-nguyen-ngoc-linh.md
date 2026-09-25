@@ -11,29 +11,29 @@
 
 | Module/deliverable | Việc tôi trực tiếp làm | File/commit/PR | Trạng thái |
 |---|---|---|---|
-| Fusion & fallback | Phụ trách hoàn thiện pipeline retrieval: chạy dense search và BM25, gộp kết quả bằng RRF một lần, dùng dense cosine score gốc để quyết định PageIndex fallback, và giữ pipeline không bị crash khi fallback lỗi. | `src/task9_retrieval_pipeline.py` | Partial |
-| Generation có citation | Phụ trách reorder chunks, format context có title/source, gọi provider LLM theo cấu hình, trả về answer cùng `sources` và `retrieval_source`, đồng thời dùng safe refusal khi không đủ evidence. | `src/task10_generation.py` | Partial |
-| Chatbot UI | Phụ trách tích hợp `generate_with_citation` vào Streamlit và hiển thị answer, sources, retrieval method và score trong giao diện. | `app.py` | Partial |
+| Task 4 - Chunking, embedding và indexing | Đọc các tài liệu Markdown trong `data/standardized/`, chia tài liệu bằng `RecursiveCharacterTextSplitter` với chunk size 500 và overlap 50, tạo embedding bằng Sentence Transformers, sau đó upsert chunks vào ChromaDB dùng cosine distance. | `src/task4_chunking_indexing.py` | Done |
+| Task 5 - Semantic search | Dùng chung hàm `embed_texts()` của Task 4 để embed query, truy vấn ChromaDB, chuyển cosine distance thành similarity score, giữ metadata và trả kết quả theo contract `SearchResult`, sắp xếp score giảm dần. | `src/task5_semantic_search.py` | Done |
+| Task 6 - Lexical search | Xây dựng BM25 index trên cùng corpus chunks, tính điểm BM25 cho query, lọc và sắp xếp kết quả theo score giảm dần, trả về `SearchResult` với `retrieval_method="bm25"`. | `src/task6_lexical_search.py` | Done |
 
 ## Quyết định kỹ thuật quan trọng
 
-1. **Dùng RRF để fusion dense search và BM25:**
-   **Lý do/evidence:** Dense search phù hợp với truy vấn theo ngữ nghĩa, còn BM25 bổ trợ các từ khóa và mã định danh chính xác. Contract yêu cầu công thức RRF `sum(1 / (k + rank))`, rank bắt đầu từ 1 và chỉ fuse một lần.
-   **Trade-off:** Phải chạy hai phương thức retrieval nên có thể tăng thời gian xử lý; bù lại không cần chuẩn hóa hai thang điểm khác nhau.
+1. **Dùng RecursiveCharacterTextSplitter với chunk size 500 và overlap 50:**
+   **Lý do/evidence:** Cách chia này giữ các đoạn văn bản ở kích thước phù hợp cho embedding và tạo overlap giữa các chunk để hạn chế mất ngữ cảnh ở ranh giới. ID chunk được tạo ổn định theo dạng `<document-id>::chunk-<index>`.
+   **Trade-off:** Chunk nhỏ giúp retrieval cụ thể hơn nhưng có thể làm tăng số lượng vectors và chi phí indexing; overlap giúp giữ ngữ cảnh nhưng tạo thêm dữ liệu trùng lặp.
 
-2. **Dùng dense cosine score gốc cho fallback:**
-   **Lý do/evidence:** Contract yêu cầu so sánh `score_threshold` với điểm dense ban đầu, không so sánh với RRF score. Khi điểm dense thấp hơn threshold thì thử PageIndex; nếu fallback lỗi thì trả kết quả hybrid thay vì làm UI crash.
-   **Trade-off:** Threshold cần được hiệu chỉnh bằng cả query đúng domain và query ngoài domain để cân bằng giữa khả năng fallback và độ ổn định của kết quả.
+2. **Dùng chung embedding model cho indexing và semantic search:**
+   **Lý do/evidence:** Task 4 cung cấp `embed_texts()` và Task 5 sử dụng lại hàm này cho query. ChromaDB được cấu hình với cosine distance, sau đó Task 5 chuyển distance thành similarity bằng `max(0.0, 1.0 - distance)`.
+   **Trade-off:** Embedding ngữ nghĩa giúp tìm được nội dung tương đồng dù không trùng từ khóa, nhưng có thể kém hiệu quả với mã tài liệu hoặc từ khóa chính xác; đây là lý do pipeline có thêm BM25 ở Task 6.
 
 ## Kiểm thử và kết quả
 
 - Test hoặc query tôi đã dùng:
 - Kết quả trước/sau nếu có:
-- Lỗi đã phát hiện và cách xử lý: Hiện các hàm `retrieve`, `reorder_for_llm`, `format_context`, `call_llm`, `generate_with_citation` và phần gọi generation trong `app.py` vẫn còn `TODO`/`NotImplementedError`, nên chưa có kết quả chạy end-to-end để ghi nhận.
+- Lỗi đã phát hiện và cách xử lý:
 
 ## Điều còn hạn chế
 
-- Một hạn chế cụ thể của phần tôi làm: Các module thuộc phạm vi phụ trách chưa được implement hoàn chỉnh; chưa có bằng chứng test hoặc evaluation để xác nhận pipeline fusion, fallback, generation và UI hoạt động end-to-end.
+- Một hạn chế cụ thể của phần tôi làm: Chưa có kết quả chạy test hoặc evaluation được ghi nhận trong báo cáo này; việc đo chất lượng retrieval trên bộ golden queries vẫn cần được bổ sung.
 - Nếu có thêm thời gian, thay đổi đầu tiên tôi sẽ thực hiện:
 
 ## Xác nhận đóng góp
