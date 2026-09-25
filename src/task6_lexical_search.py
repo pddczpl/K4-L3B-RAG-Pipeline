@@ -16,7 +16,10 @@ def build_bm25_index(corpus: list[dict]):
     # from rank_bm25 import BM25Okapi
     # tokenized = [item["content"].lower().split() for item in corpus]
     # return BM25Okapi(tokenized)
-    raise NotImplementedError("Implement build_bm25_index")
+    from rank_bm25 import BM25Okapi
+
+    tokenized = [item["content"].lower().split() for item in corpus]
+    return BM25Okapi(tokenized)
 
 
 def lexical_search(query: str, top_k: int = 10) -> list[dict]:
@@ -40,7 +43,42 @@ def lexical_search(query: str, top_k: int = 10) -> list[dict]:
     #         "retrieval_method": "bm25",
     #     })
     # return results
-    raise NotImplementedError("Implement lexical_search")
+    global CORPUS
+
+    if top_k <= 0 or not query.strip():
+        return []
+    if not CORPUS:
+        from .task4_chunking_indexing import chunk_documents, load_documents
+
+        CORPUS = chunk_documents(load_documents())
+    if not CORPUS:
+        return []
+
+    bm25 = build_bm25_index(CORPUS)
+    scores = bm25.get_scores(query.lower().split())
+    ranked_indices = sorted(
+        range(len(CORPUS)),
+        key=lambda index: float(scores[index]),
+        reverse=True,
+    )
+    results = []
+    for index in ranked_indices:
+        score = float(scores[index])
+        if score < 0:
+            continue
+        item = CORPUS[index]
+        results.append(
+            {
+                "id": item["id"],
+                "content": item["content"],
+                "score": score,
+                "metadata": item["metadata"],
+                "retrieval_method": "bm25",
+            }
+        )
+        if len(results) >= top_k:
+            break
+    return results
 
 
 if __name__ == "__main__":
