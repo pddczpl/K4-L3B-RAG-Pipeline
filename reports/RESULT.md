@@ -6,8 +6,8 @@
 | ---------------------------------- | ----- |
 | Evaluation date                    | 2026-09-25 |
 | Framework and version              | Custom Evaluation / Ragas 0.4.3 |
-| Evaluator model                    | gemini-2.0-flash |
-| Generator model                    | gemini-2.0-flash |
+| Evaluator model                    | gemini-3.5-flash-lite |
+| Generator model                    | gemini-3.5-flash-lite |
 | Embedding model                    | BAAI/bge-m3 (1024d) |
 | Corpus version/commit              | Standardized News (5 documents, 2516 chunks) |
 | Golden dataset size                | 17 |
